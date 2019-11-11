@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SA2.Views.MainPage"
+             Title="Bem Vindo"           
+             
+           >
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Image Margin="20"
+                   Source="growth.png"
+                   Aspect="AspectFill"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   WidthRequest="300"
+                   HeightRequest="300"/>
+
+            <StackLayout
+                x:Name="txtDesBank"
+                Orientation="Vertical"
+                Margin="-35">
+                <Label 
+                   Text="DesBank"
+                   TextColor="#119685"
+                   FontSize="50"                 
+                   FontAttributes="Bold"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"                      
+                       />
+            </StackLayout>
+
+            <StackLayout
+                x:Name="txtMensagem"
+                Margin="20">
+                <Label 
+                Text="{Binding Mensagem}"
+                TextColor="Black"              
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                />
+
+            </StackLayout>
+
+            <StackLayout x:Name="btnCadastro"
+                         Margin="25,50,25,0">
+
+                <Button 
+                    Text="Entrar"
+                    
+                    Command="{Binding EntrarCommand}"
+                    BackgroundColor="#119685"
+                    TextColor="White"        
+                    VerticalOptions="End"
+                    />
+
+                <Button 
+                    Text="Cadastrar" 
+                    Command="{Binding CadastrarCommand}"
+                    BackgroundColor="White"
+                    TextColor="#119685" 
+                    BorderColor="#119685"                  
+                    BorderWidth="1"
+                    BorderRadius="3"
+                    VerticalOptions="End"
+                        />
+
+
+            </StackLayout>
+
+           
+
+         
+
+
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

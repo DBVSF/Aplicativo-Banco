@@ -1,0 +1,119 @@
+﻿
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SA2.Views.DadosPessoais"
+             Title ="Dados Pessoais">
+    <ContentPage.Content>
+        <StackLayout>
+           
+
+
+            <Image Margin="20"
+                   Source="love.png"
+                   Aspect="AspectFill"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   WidthRequest="100"
+                   HeightRequest="100"/>
+
+            <Label 
+                Margin="50,-60,50,0"
+                Text="{Binding Mensagem}"
+                TextColor="Black"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                FontSize="15"
+               
+                />
+
+            <Entry x:Name="txtEmail"
+                   Placeholder="Email"
+                   Text="{Binding Email}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Keyboard="Email"
+                   MaxLength="160"
+                   Margin="25,0,25,0"/>
+
+            <Entry x:Name="txtConfirmaEmail"
+                   Placeholder="Confirmação do Email"
+                   Text="{Binding ConfirmacaoEmail}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Keyboard="Email"
+                   MaxLength="160"
+                   Margin="25,0,25,0"/>
+
+
+            <Entry x:Name="txtNomeMae"
+                   Placeholder="Nome da mãe"   
+                   Text="{Binding Nome_Mae}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Keyboard="Default"
+                   MaxLength="100"
+                   Margin="25,0,25,0"/>
+
+
+            <Picker
+                x:Name="pckProficao"
+                Title="Profissão"
+                Margin="25,0,25,0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String, Binding Profissao}">
+                        <x:String>Professor</x:String>
+                        <x:String>Programador</x:String>
+                        <x:String>Agiota</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Picker
+                x:Name="pckEscolaridade"
+                Title="Escolaridade"
+                Margin="25,0,25,0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String, Binding Escolaridade}">
+                        <x:String>Ensino Fundamental Completo</x:String>
+                        <x:String>Ensino Médio Completo</x:String>
+                        <x:String>Ensino Superior Completo</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Picker
+                x:Name="pckEstadoCivil"
+                Title="Estado Civil"
+                Margin="25,0,25,0">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String, Binding Estado_Civil}">
+                        <x:String>Solteiro</x:String>
+                        <x:String>Casado</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <StackLayout x:Name="btnContinuar">
+                <Button 
+                    Text="Continuar" 
+                    Command="{Binding ContinuarCommand}"                  
+                    BackgroundColor="#119685"
+                    TextColor="White" 
+                    VerticalOptions="End"
+                    Margin="25,0,25,10"
+                        />
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+
+

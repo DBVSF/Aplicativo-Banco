@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SA2.Views.Documentos"
+             Title ="Documentos">
+    <ContentPage.Content>
+        <StackLayout>
+        
+
+            <Image Margin="20"
+                   Source="card.png"
+                   Aspect="AspectFill"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   WidthRequest="100"
+                   HeightRequest="100"/>
+
+            <Label 
+                Margin="50,-60,50,0"
+                Text="{Binding Mensagem}"
+                TextColor="Black"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                FontSize="15"
+               
+                />
+            <Entry x:Name="txtRGouCnh"
+                   Placeholder="RG ou CNH"
+                   Text="{Binding RG_CNH}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Keyboard="Numeric"
+                   MaxLength="160"
+                   Margin="25,0,25,0"/>
+
+                 <Entry x:Name="txtOrgaoEmissor"
+                   Placeholder="Orgão Emissor"
+                   Text="{Binding Orgao_Emissor}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Keyboard="Default" 
+                   Margin="25,0,25,0"
+                   />
+
+            <DatePicker x:Name="dtEmissao"
+                        Date="{Binding Data_Emissao}"
+                        Format="dd/MM/yyyy"
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="25,0,25,0"/>
+
+            <Picker
+                x:Name="picker"
+                Title="UF"
+                Margin="25,0,25,0">
+
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String, Binding UF}">
+                        <x:String>Santa Catarina</x:String>
+                        <x:String>Rio Grande do Sul</x:String>
+                        <x:String>Paraná</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+
+            <StackLayout x:Name="btnContinuar">
+                <Button 
+                    Text="Continuar" 
+                    Command="{Binding ContinuarCommand}"                  
+                    BackgroundColor="#119685"
+                    TextColor="White" 
+                    VerticalOptions="End"
+                    Margin="25,0,25,10"
+                        />
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

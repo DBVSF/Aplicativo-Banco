@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SA2.Views.BiometriaPage">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Label Text="{Binding Mensagem}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                FontSize="15"
+                TextColor="Black"/>
+
+
+      
+
+
+            <Image x:Name="imgCliente"
+               Source=""
+               Aspect="AspectFit"
+               HorizontalOptions="Center"
+                   HeightRequest="300"
+                   WidthRequest="300"/>
+
+            <Button x:Name="btnFoto"
+                    Text="Tirar foto"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="EndAndExpand" 
+                    Clicked="BtnFoto_Clicked">
+            </Button>
+
+
+
+
+
+            <Button 
+                    Text="Finalizar" 
+                    Command="{Binding ContinuarCommand}"                  
+                    BackgroundColor="#119685"
+                    TextColor="White" 
+                    VerticalOptions="End"
+                    Margin="25,0,25,10"
+                        />
+        </StackLayout>
+
+
+    
+        
+        
+        
+        
+    </ContentPage.Content>
+</ContentPage>

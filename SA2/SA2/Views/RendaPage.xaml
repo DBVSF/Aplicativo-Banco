@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SA2.Views.RendaPage"
+             Title ="Renda">
+    <ContentPage.Content>
+        <StackLayout>
+     
+
+                   <Image   Margin="20"
+                            Source="money.png"
+                            Aspect="AspectFill"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"
+                            WidthRequest="140"
+                            HeightRequest="140"/>
+
+            <Label 
+                Margin="50,-60,50,0"
+                Text="{Binding Mensagem}"
+                TextColor="Black"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                FontSize="15"           
+                />
+
+            <Entry x:Name="txtValorRenda"
+                   Placeholder="Valor da Renda"
+                   Text="{Binding Valor_Renda}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Keyboard="Numeric"
+                   Margin="25,0,25,0"
+                   />
+
+            <Entry x:Name="txtValorLimite"
+                   Placeholder="Valor Limite"
+                   Text="{Binding Valor_Limite}"
+                   VerticalOptions="Start"
+                   HorizontalOptions="FillAndExpand"
+                   HorizontalTextAlignment="Start"
+                   Keyboard="Numeric"
+                   Margin="25,0,25,0"
+                   />
+
+            <DatePicker Margin="25,0,25,0"
+                        x:Name="dtVencimento"
+                        Date="{Binding Vencimento_Fatura}"
+                        Format="dd/MM/yyyy"
+                        VerticalOptions="Start"
+                        HorizontalOptions="FillAndExpand"/>
+
+            <StackLayout x:Name="btnContinuar">
+                <Button 
+                    Text="Continuar" 
+                    Command="{Binding ContinuarCommand}"                  
+                    BackgroundColor="#119685"
+                    TextColor="White" 
+                    VerticalOptions="End"
+                    Margin="25,0,25,10"
+                        />
+        </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
