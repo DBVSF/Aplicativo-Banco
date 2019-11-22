@@ -7,9 +7,23 @@
              x:Class="SA2.Views.ConcluidoPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+
+            <Image 
+                Margin="100"
+                Source="deal.png"
+                Aspect="AspectFill"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                WidthRequest="140"
+                HeightRequest="140"
+                />
+
+            <Label Text="{Binding Mensagem }"
+                   FontSize="Medium"
+                   TextColor="Black"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

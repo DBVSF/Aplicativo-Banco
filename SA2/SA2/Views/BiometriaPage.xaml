@@ -4,38 +4,105 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="SA2.Views.BiometriaPage">
+             x:Class="SA2.Views.BiometriaPage"
+             Title="Biometria">
+
     <ContentPage.Content>
         <StackLayout>
-            
-            <Label Text="{Binding Mensagem}"
+
+            <Label 
+                Text="{Binding Mensagem}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"
                 FontSize="15"
                 TextColor="Black"/>
 
+            <StackLayout
+                x:Name="StackBtnFotos"
+                Orientation="Horizontal"
+                Margin="20, 0, 0,130">
 
-      
+                <StackLayout x:Name="botoes"
+                 Orientation="Vertical"
+                
+                >
+                    <Button 
+                    x:Name="btnRhCnh"
+                    Text="RG / CNH"
+                    Command="{Binding RgCnhCommand}"
+                    BackgroundColor="#119685"
+                    TextColor="White"
+                    Margin="0, 0, 0,30">
+                    </Button>
 
+                    <Button 
+                    x:Name="btnResidencia"
+                    Text="Residência"
+                    Command="{Binding ResidenciaCommand}"
+                    BackgroundColor="#119685"
+                    TextColor="White"
+                    Margin="0, 0, 0,30">
+                    </Button>
 
-            <Image x:Name="imgCliente"
-               Source=""
-               Aspect="AspectFit"
-               HorizontalOptions="Center"
-                   HeightRequest="300"
-                   WidthRequest="300"/>
+                    <Button 
+                    x:Name="btnRenda"
+                    Text="Renda"
+                    Command="{Binding RendaCommand}"
+                    BackgroundColor="#119685"
+                    TextColor="White"
+                        Margin="0, 0, 0,30">
+                    </Button>
 
-            <Button x:Name="btnFoto"
-                    Text="Tirar foto"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="EndAndExpand" 
-                    Clicked="BtnFoto_Clicked">
-            </Button>
+                    <Button 
+                    x:Name="btnSelfie"
+                    Text="Selfie"
+                    Command="{Binding SelfieCommand}"
+                    BackgroundColor="#119685"
+                    TextColor="White" >
+                    </Button>
+                </StackLayout>
 
+                <StackLayout
+                    x:Name="fotos"
+                    Orientation="Vertical"
+                  >
 
+                    <Image 
+                   x:Name="imgRG_CNH"
+                   Source="{Binding RG_CNH}"
+                   Aspect="AspectFit"                  
+                   HeightRequest="50"
+                   WidthRequest="50 "
+                   Margin="180,0,0,30"
+                    />
 
+                    <Image 
+                   x:Name="imgResidencia"
+                   Source="{Binding Residencia}"
+                   Aspect="AspectFit"
+                   HeightRequest="50"
+                   WidthRequest="50"
+                   Margin="180,0,0,30"
+                     />
 
-
+                    <Image 
+                   x:Name="imgRenda"
+                   Source="{Binding Renda}"
+                   Aspect="AspectFit"
+                   HeightRequest="50"
+                   WidthRequest="50"
+                   Margin="180,0,0,30"
+                          />
+                    <Image 
+                   x:Name="imgCliente"
+                   Source="{Binding Selfie}"
+                   Aspect="AspectFit"
+                   HeightRequest="50"
+                   WidthRequest="50"
+                   Margin="180,0,0,30"
+                    />
+                </StackLayout>
+            </StackLayout>
             <Button 
                     Text="Finalizar" 
                     Command="{Binding ContinuarCommand}"                  
@@ -44,13 +111,8 @@
                     VerticalOptions="End"
                     Margin="25,0,25,10"
                         />
+
         </StackLayout>
 
-
-    
-        
-        
-        
-        
     </ContentPage.Content>
 </ContentPage>

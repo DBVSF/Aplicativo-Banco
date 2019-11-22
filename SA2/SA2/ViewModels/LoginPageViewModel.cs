@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SA2.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -8,6 +9,17 @@ namespace SA2.ViewModels
 {
     public class LoginPageViewModel : BaseViewModel
     {
+
+
+
+        private string _mensagem;
+        public string Mensagem
+        {
+            get { return _mensagem; }
+            set { SetProperty<string>(ref _mensagem, value); }
+        }
+
+
         private string _cpf;
         public string Cpf
         {
@@ -28,6 +40,7 @@ namespace SA2.ViewModels
 
         public LoginPageViewModel(Page pagina) : base(pagina)
         {
+            Mensagem = "Insira seus dados";
             Cpf = "";
             Senha = "";
             LogarCommand = new Command(ExecuteLogarCommand);
@@ -35,7 +48,8 @@ namespace SA2.ViewModels
 
         private async void ExecuteLogarCommand()
         {
-          
+            ConcluidoPage page = new ConcluidoPage(Cliente);
+            await _navigation.PushAsync(page);
         }
     }
 }

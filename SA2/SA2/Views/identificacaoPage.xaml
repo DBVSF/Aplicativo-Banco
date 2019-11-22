@@ -59,15 +59,14 @@
             <Picker
                 x:Name="MainPicker"
                 Title="Selecione seu Sexo"
-                Margin="25,0,25,0">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String, Binding Sexo}">
-                        <x:String>Feminino</x:String>
-                        <x:String>Masculino</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+                Margin="25,0,25,0"
+                ItemsSource="{Binding Sexos}"
+                ItemDisplayBinding="{Binding Nome}"
+                SelectedItem="{Binding SexoSelecionado}">
+               
             </Picker>
 
+               
 
             <StackLayout x:Name="btnContinuar">
                 <Button 

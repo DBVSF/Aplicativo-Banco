@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.ComponentModel;
 using Plugin.Media;
+using DocumentFormat.OpenXml.Bibliography;
 
 namespace SA2.ViewModels
 {
@@ -49,56 +50,188 @@ namespace SA2.ViewModels
             set { SetProperty<ImageSource>(ref _renda, value); }
         }
 
-       
+        public bool ImagensValidas()
+        {
+            if (Selfie == null)
+            {
+                _pagina.DisplayAlert("Faltou", "Você precisa tirar uma foto", "ok");
+                return false;
+            }
+            if (Renda == null)
+            {
+                _pagina.DisplayAlert("Faltou", "Você precisa tirar uma foto do comprovante de renda", "ok");
+                return false;
+            }
+            if (Residencia == null)
+            {
+                _pagina.DisplayAlert("Faltou", "Você precisa tirar uma foto do comprovante de residência", "ok");
+                return false;
+            }
+            if (RG_CNH == null)
+            {
+                _pagina.DisplayAlert("Faltou", "Você precisa tirar uma foto do seu RG ou CNH", "ok");
+                return false;
+            }
+            return true;
+        }
+
+
+
         public ICommand ContinuarCommand { get; }
+        public ICommand SelfieCommand { get; }
+        public ICommand RendaCommand { get; }
+        public ICommand ResidenciaCommand { get; }
+        public ICommand RgCnhCommand { get; }
+
 
 
         public BiometriaPageViewModel(Page pagina, ClienteModels cliente) : base(pagina)
         {
             Cliente = cliente;
             Mensagem = "Vamos digitalizar seus documentos";
-            Selfie = "";
-            RG_CNH = "";
-            Residencia = "";
-            Renda = "";
-         
+            Selfie = null;
+            RG_CNH = null;
+            Residencia = null;
+            Renda = null;
+
             ContinuarCommand = new Command(ExecuteContinuarCommand);
+            SelfieCommand = new Command(ExecuteSelfieCommand);
+            RendaCommand = new Command(ExecuteRendaCommand);
+            ResidenciaCommand = new Command(ExecuteResidenciaCommand);
+            RgCnhCommand = new Command(ExecuteRG_CNHCommand);
+            ContinuarCommand = new Command(ExecuteContinuarCommand);
+        }
+
+        private async void ExecuteSelfieCommand()
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await _pagina.DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+
+            if (file == null)
+                return;
+
+            await _pagina.DisplayAlert("File Location", file.Path, "OK");
+
+            Selfie = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
         }
 
         private async void ExecuteRendaCommand()
         {
-            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
+            await CrossMedia.Current.Initialize();
 
-            if (photo != null)
-                Renda = ImageSource.FromStream(() => { return photo.GetStream(); });
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await _pagina.DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+
+            if (file == null)
+                return;
+
+            await _pagina.DisplayAlert("File Location", file.Path, "OK");
+
+            Renda = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
         }
 
         private async void ExecuteResidenciaCommand()
         {
-            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
+            await CrossMedia.Current.Initialize();
 
-            if (photo != null)
-                Residencia = ImageSource.FromStream(() => { return photo.GetStream(); });
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await _pagina.DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+
+            if (file == null)
+                return;
+
+            await _pagina.DisplayAlert("File Location", file.Path, "OK");
+
+            Residencia = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
         }
 
         private async void ExecuteRG_CNHCommand()
         {
-            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
+            await CrossMedia.Current.Initialize();
 
-            if (photo != null)
-                RG_CNH = ImageSource.FromStream(() => { return photo.GetStream(); });
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await _pagina.DisplayAlert("No Camera", ":( No camera available.", "OK");
+                return;
+            }
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+
+            if (file == null)
+                return;
+
+            await _pagina.DisplayAlert("File Location", file.Path, "OK");
+
+            RG_CNH = ImageSource.FromStream(() =>
+            {
+                var stream = file.GetStream();
+                return stream;
+            });
         }
-
-   
-  
 
         private async void ExecuteContinuarCommand()
         {
+           
             Cliente.Selfie = Selfie;
+            Cliente.RG_CNH_FT = RG_CNH;
+            Cliente.Residencia_FT = Residencia;
+            Cliente.Renda = Renda;
 
-            ConcluidoPage page = new ConcluidoPage(Cliente);
-            await _navigation.PushAsync(page);
-        }
+            if (ImagensValidas())
+            {
+                ConcluidoPage page = new ConcluidoPage(Cliente);
+                await _navigation.PushAsync(page);
+            }
+            else
+            {
 
+            }
+
+        }        
     }
 }

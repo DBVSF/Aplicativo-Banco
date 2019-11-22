@@ -21,16 +21,11 @@ namespace SA2.Views
             BindingContext = new BiometriaPageViewModel(this, cliente);
         }
 
-        private async void BtnFoto_Clicked(object sender, EventArgs e)
-        {
-            var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions() { });
-
-            if (photo != null)
-                imgCliente.Source = ImageSource.FromStream(() => { return photo.GetStream(); });
-
-
-        }
+      
     }
 
- 
 }
+
+    
+
+ 

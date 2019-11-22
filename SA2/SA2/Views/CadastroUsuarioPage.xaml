@@ -12,9 +12,8 @@
                    Aspect="AspectFill"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
-                   WidthRequest="200"
-                   HeightRequest="200"/>
-
+                   WidthRequest="140"
+                   HeightRequest="140"/>
 
             <Label 
                 Margin="50,-60,50,0"
@@ -50,10 +49,9 @@
                    Margin="25,0,25,0"
                    
                        />
+       
 
 
-        
-            
             <Entry  
                    x:Name="txtConfirmaSenha"
                    Placeholder="Confirme a Senha"

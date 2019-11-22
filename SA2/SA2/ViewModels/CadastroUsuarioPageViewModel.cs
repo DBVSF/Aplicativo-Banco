@@ -48,12 +48,11 @@ namespace SA2.ViewModels
       
         private bool DadosValidos()
         {
-  
 
+           
             if (String.IsNullOrEmpty(Cpf))
             {
                 _pagina.DisplayAlert("Faltou!", "Informe um cpf", "Ok");
-             
                 return false;
                 
             }
@@ -74,6 +73,7 @@ namespace SA2.ViewModels
                 _pagina.DisplayAlert("Atenção", "As senhas precisam ser iguais", "Ok");
                 return false;
             }
+
             return true;
             
 
@@ -103,7 +103,7 @@ namespace SA2.ViewModels
             cliente.Senha = Senha;
             cliente.ConfirmacaoSenha = ConfirmacaoSenha;
 
-            if (DadosValidos())
+           if (DadosValidos())
             {
                 
                 identificacaoPage page = new identificacaoPage(cliente);

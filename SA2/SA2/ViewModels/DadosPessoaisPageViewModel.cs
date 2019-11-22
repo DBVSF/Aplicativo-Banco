@@ -7,6 +7,8 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using SA2.Views;
 using SA2.Models;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SA2.ViewModels
 {
@@ -43,25 +45,50 @@ namespace SA2.ViewModels
             set { SetProperty<string>(ref _nome_Mae, value); }
         }
 
-        private string _profissao;
-        public string Profissao
+
+
+        private List<Estado_Civil> _estadosC;
+        public List<Estado_Civil> EstadoCivil
         {
-            get { return _profissao; }
-            set { SetProperty<string>(ref _profissao, value); }
+            get { return _estadosC; }
+            set { SetProperty<List<Estado_Civil>>(ref _estadosC, value); }
         }
 
-        private string _escolaridade;
-        public string Escolaridade
+        private Estado_Civil estadocSelecionada;
+        public Estado_Civil EstadoCivilSelecionado
+        {
+            get { return estadocSelecionada; }
+            set { SetProperty<Estado_Civil>(ref estadocSelecionada, value); }
+        }
+
+
+        private List<Profissao> _profissoes;
+        public List<Profissao> Profissoes
+        {
+            get { return _profissoes; }
+            set { SetProperty<List<Profissao>>(ref _profissoes, value); }
+        }
+
+        private Profissao profissaoselecionada;
+        public Profissao ProfissaoSelecionada
+        {
+            get { return profissaoselecionada; }
+            set { SetProperty<Profissao>(ref profissaoselecionada, value); }
+        }
+
+
+        private List<Escolaridade> _escolaridade;
+        public List<Escolaridade> Escolaridades
         {
             get { return _escolaridade; }
-            set { SetProperty<string>(ref _escolaridade, value); }
+            set { SetProperty<List<Escolaridade>>(ref _escolaridade, value); }
         }
 
-        private string _estado_Civil;
-        public string Estado_Civil
+        private Escolaridade escolaridadeselecionada;
+        public Escolaridade EscolaridadeSelecionada
         {
-            get { return _estado_Civil; }
-            set { SetProperty<string>(ref _estado_Civil, value); }
+            get { return escolaridadeselecionada; }
+            set { SetProperty<Escolaridade>(ref escolaridadeselecionada, value); }
         }
 
 
@@ -85,13 +112,26 @@ namespace SA2.ViewModels
                 _pagina.DisplayAlert("Atenção", "O Email precisa conter @ ", "Ok");
                 return false;
             }
-
-            
-       
+            if (EscolaridadeSelecionada == null)
+            {
+                _pagina.DisplayAlert("Atenção", "Selecione uma Escolaridade", "ok");
+            return false;
+            }
+            if (EstadoCivilSelecionado == null)
+            {
+            _pagina.DisplayAlert("Atenção", "Selecione um Estado Civil", "ok");
+            return false;
+            }
+            if (ProfissaoSelecionada == null)
+             {
+            _pagina.DisplayAlert("Atenção", "Selecione uma Profissao", "ok");
+            return false;
+            }
             return true;
         }
 
-
+       
+     
 
         public ICommand ContinuarCommand { get; }
 
@@ -102,12 +142,34 @@ namespace SA2.ViewModels
             Email = "";
             ConfirmacaoEmail = "";
             Nome_Mae = "";
-            Profissao = "";
-            Escolaridade = "";
-            Estado_Civil = "";
 
             ContinuarCommand = new Command(ExecuteContinuarCommand);
 
+            Profissoes = new List<Profissao>()
+            {
+                new Profissao(){Codigo = 1, Nome = "Professor"},
+                new Profissao(){Codigo = 2, Nome = "Programador"},
+                new Profissao(){Codigo = 3, Nome = "Agiota"},
+            };
+
+                        Escolaridades = new List<Escolaridade>()
+            {
+                new Escolaridade(){Codigo = 1, Nome = "Ensino Fundamental Completo"},
+                new Escolaridade(){Codigo = 2, Nome = "Ensino Médio Completo"},
+                new Escolaridade(){Codigo = 3, Nome = "Ensino Superior Completo"},
+            };
+
+                        EstadoCivil = new List<Estado_Civil>()
+            {
+                new Estado_Civil(){Codigo = 1, Nome = " Casado "},
+                new Estado_Civil(){Codigo = 2, Nome = " Solteiro "},                
+            };
+
+
+
+                        ProfissaoSelecionada = null;
+                        EscolaridadeSelecionada = null;
+                        EstadoCivilSelecionado = null;
         }
 
         private async void ExecuteContinuarCommand()
@@ -115,25 +177,45 @@ namespace SA2.ViewModels
             Cliente.Email = Email;
             Cliente.ConfirmacaoEmail = ConfirmacaoEmail;
             Cliente.Nome_Mae = Nome_Mae;
-            Cliente.Profissao = Profissao;
-            Cliente.Escolaridade = Escolaridade;
-            Cliente.Estado_Civil = Estado_Civil;
+            Cliente.Profissao = ProfissaoSelecionada;
+            Cliente.Escolaridade = EscolaridadeSelecionada;
+            Cliente.Estado_Civil = EstadoCivilSelecionado;
 
-            if (DadosPessoaisValidos()){
+           if (DadosPessoaisValidos()){
                 RendaPage page = new RendaPage(Cliente);
                 await _navigation.PushAsync(page);
 
             }
             else
             {
-                await _pagina.DisplayAlert("Faltou!", "Tais tolo? Implementa ae xtopo!", "Ok");
-            }
+              
+           }
 
             
             
         }
 
 
+        public class Profissao
+        {
+            public int Codigo { get; set; }
+            public string Nome { get; set; }
+        }
+
+        public class Escolaridade
+        {
+            public int Codigo { get; set; }
+            public string Nome { get; set; }
+        }
+
+        public class Estado_Civil
+        {
+            public int Codigo { get; set; }
+            public string Nome { get; set; }
+        }
+
 
     }
+
+
 }

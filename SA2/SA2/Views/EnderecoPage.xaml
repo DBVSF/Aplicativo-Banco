@@ -35,7 +35,7 @@
                    Keyboard="Numeric" 
                    MaxLength="9"
                    Margin="25,0,25,10"/>
-
+           
 
             <Entry x:Name="txtLogradouro"
                    Placeholder="Logradouro"
@@ -96,34 +96,25 @@
                  Orientation="Horizontal"                  
                  Margin="25,0,25,0"
                 >
-                
-                <Picker         
-                x:Name="PckEstados"
+
+                <Picker
+                x:Name="pckCidade"
                 Title="Selecione sua Cidade"
-             
-                        >
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String,Binding Cidade}">
-                            <x:String>Brusque</x:String>
-                            <x:String>Porto Alegre</x:String>
-                            <x:String>Curitiba</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
+                ItemsSource="{Binding Cidades}"
+                SelectedItem="{Binding CidadeSelecionada}"
+                ItemDisplayBinding="{Binding Nome}">
+                    
+                    
+                 </Picker>
 
+                 <Picker
+                x:Name="pckEstado"
+                Title="UF"
+                ItemsSource="{Binding Estados}"
+                SelectedItem="{Binding EstadoSelecionado}"
+                ItemDisplayBinding="{Binding Nome}">
+                 </Picker>
 
-                <Picker  
-                x:Name="PckCidade"
-                Title="UF"        
-                            >
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String, Binding Estado}">
-                            <x:String>Santa Catarina</x:String>
-                            <x:String>Rio Grande do Sul</x:String>
-                            <x:String>Paraná</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
 
             </StackLayout>
 
@@ -136,7 +127,7 @@
                     BackgroundColor="#119685"
                     TextColor="White" 
                     VerticalOptions="End"
-                    Margin="25,0,25,50"
+                    Margin="25,0,25,20"
                         />
             </StackLayout>
 

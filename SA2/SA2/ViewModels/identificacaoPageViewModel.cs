@@ -7,6 +7,8 @@ using Xamarin.Forms;
 using System.Windows.Input;
 using SA2.Models;
 using SA2.Views;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace SA2.ViewModels
 {
@@ -23,10 +25,6 @@ namespace SA2.ViewModels
             get { return mensagem; }
             set { SetProperty<string>(ref mensagem, value); }
         }
-
- 
-
-
 
         private string _nome;
         public string Nome
@@ -45,15 +43,8 @@ namespace SA2.ViewModels
         }
 
 
-       
+    
 
-        private string _sexo;
-
-        public string  Sexo
-         {
-           get { return _sexo; }
-           set { SetProperty<string>(ref _sexo, value);}
-         }
 
         private string _telefone_Celular;
 
@@ -78,17 +69,44 @@ namespace SA2.ViewModels
                 return false;
 
             }
-            if (string.IsNullOrEmpty(Telefone_Celular))
+            if (String.IsNullOrEmpty(Telefone_Celular))
             {
                 _pagina.DisplayAlert("Atenção", "Adicione um telefone", "Ok");
                 return false;
             }
+
             if (Telefone_Celular.Length < 11)
             {
                 _pagina.DisplayAlert("Atenção", "Telefone invalido", "Ok");
                 return false;
             }
+
+            if (SexoSelecionado == null)
+            {
+                _pagina.DisplayAlert("Atenção", "Informe um sexo", "Ok");
+                return false;
+            }
+            if(Data_Nascimento > DateTime.Now)
+            {
+                _pagina.DisplayAlert("Atenção!", "Informe uma data correta", "Ok");
+                return false;
+            }
+            
             return true;
+        }
+
+        private List<Sexo> _sexo;
+        public List<Sexo> Sexos
+        {
+            get { return _sexo; }
+            set { SetProperty<List<Sexo>>(ref _sexo, value); }
+        }
+
+        private Sexo sexoselecionado;
+        public Sexo SexoSelecionado
+        {
+            get { return sexoselecionado; }
+            set { SetProperty<Sexo>(ref sexoselecionado, value); }
         }
 
 
@@ -102,8 +120,18 @@ namespace SA2.ViewModels
             Nome = "";
             Data_Nascimento = DateTime.Now;        
             Telefone_Celular = "";
-            Sexo = "";
+            
             ContinuarCommand = new Command(ExecuteContinuarCommand);
+
+
+            Sexos = new List<Sexo>()
+            {
+            new Sexo(){ Codigo = 1, Nome = "Feminino" },
+            new Sexo(){ Codigo = 2, Nome = "Masculino" },
+            
+            };
+            SexoSelecionado = null;
+
         }
 
         private async void ExecuteContinuarCommand()
@@ -111,20 +139,28 @@ namespace SA2.ViewModels
             Cliente.Nome = Nome;
             Cliente.Data_Nascimento = Data_Nascimento;
             Cliente.Telefone_Celular = Telefone_Celular;
-            Cliente.Sexo = Sexo;
+            Cliente.Sexo = SexoSelecionado;
 
-            if (DadosValidosIdentificacao())
-            {
-                
-                EnderecoPage page = new EnderecoPage(Cliente);
+             if (DadosValidosIdentificacao())
+             {
+
+            EnderecoPage page = new EnderecoPage(Cliente);
                 await _navigation.PushAsync(page);
-            }
+           }
 
-            else
+           else
             {
-                await _pagina.DisplayAlert("Faltou!", "Tais tolo? Implementa ae xtopo!", "Ok");
+
             }
 
         }
+
+        public class Sexo
+        {
+            public int Codigo { get; set; }
+            public string Nome { get; set; }
+        }
+
+
     }
 }

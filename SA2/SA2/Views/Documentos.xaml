@@ -15,8 +15,8 @@
                    Aspect="AspectFill"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
-                   WidthRequest="100"
-                   HeightRequest="100"/>
+                   WidthRequest="140"
+                   HeightRequest="140"/>
 
             <Label 
                 Margin="50,-60,50,0"
@@ -55,18 +55,15 @@
                         Margin="25,0,25,0"/>
 
             <Picker
-                x:Name="picker"
+                x:Name="pckEstado"
                 Title="UF"
-                Margin="25,0,25,0">
-
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String, Binding UF}">
-                        <x:String>Santa Catarina</x:String>
-                        <x:String>Rio Grande do Sul</x:String>
-                        <x:String>Paraná</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+                ItemsSource="{Binding Estados}"
+                SelectedItem="{Binding EstadoSelecionado}"
+                ItemDisplayBinding="{Binding Nome}"
+                  Margin="25,0,25,0">
             </Picker>
+
+
 
 
             <StackLayout x:Name="btnContinuar">

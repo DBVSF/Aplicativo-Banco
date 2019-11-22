@@ -16,8 +16,8 @@
                    Aspect="AspectFill"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
-                   WidthRequest="100"
-                   HeightRequest="100"/>
+                   WidthRequest="140"
+                   HeightRequest="140"/>
 
             <Label 
                 Margin="50,-60,50,0"
@@ -64,39 +64,30 @@
             <Picker
                 x:Name="pckProficao"
                 Title="Profissão"
-                Margin="25,0,25,0">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String, Binding Profissao}">
-                        <x:String>Professor</x:String>
-                        <x:String>Programador</x:String>
-                        <x:String>Agiota</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+                Margin="25,0,25,0"
+                 ItemsSource="{Binding Profissoes}"
+                ItemDisplayBinding="{Binding Nome}"
+                SelectedItem="{Binding ProfissaoSelecionada}">
+
             </Picker>
 
             <Picker
                 x:Name="pckEscolaridade"
                 Title="Escolaridade"
-                Margin="25,0,25,0">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String, Binding Escolaridade}">
-                        <x:String>Ensino Fundamental Completo</x:String>
-                        <x:String>Ensino Médio Completo</x:String>
-                        <x:String>Ensino Superior Completo</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+                Margin="25,0,25,0"
+                ItemsSource="{Binding Escolaridades}"
+                ItemDisplayBinding="{Binding Nome}"
+                SelectedItem="{Binding EscolaridadeSelecionada}">
             </Picker>
 
             <Picker
                 x:Name="pckEstadoCivil"
                 Title="Estado Civil"
-                Margin="25,0,25,0">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String, Binding Estado_Civil}">
-                        <x:String>Solteiro</x:String>
-                        <x:String>Casado</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
+                Margin="25,0,25,0"
+                ItemsSource="{Binding EstadoCivil}"
+                ItemDisplayBinding="{Binding Nome}"
+                SelectedItem="{Binding EstadoCivilSelecionado}">
+
             </Picker>
 
             <StackLayout x:Name="btnContinuar">

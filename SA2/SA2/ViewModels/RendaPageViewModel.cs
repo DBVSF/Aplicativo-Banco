@@ -42,17 +42,17 @@ namespace SA2.ViewModels
 
         private bool DadosRendaValida()
         {
-            if (Valor_Renda > 0)
+            if(Valor_Limite <= 0)
             {
-                _pagina.DisplayAlert("Faltou!", "Informe uma renda valida", "Ok");
+                _pagina.DisplayAlert("Faltou", "Insira uma renda valida", "ok");
                 return false;
             }
-
-            if (Valor_Limite > 0)
+            if(Valor_Renda <= 0)
             {
-                _pagina.DisplayAlert("Faltou!", "Informe um limite valido", "Ok");
+                _pagina.DisplayAlert("Faltou", "Insira uma renda valida", "ok");
                 return false;
             }
+       
             return true;
 
         }
@@ -77,17 +77,17 @@ namespace SA2.ViewModels
             Cliente.Valor_Renda = Valor_Renda;
             Cliente.Vencimento_Fatura = Vencimento_Fatura;
 
-            if (DadosRendaValida())
+             if (DadosRendaValida())
             {
                 BiometriaPage page = new BiometriaPage(Cliente);
                 await _navigation.PushAsync(page);
-            }
+           }
             else
-            {         
-           
-            }
+              {
 
-         
+           }
+
+
         }
     }
 
