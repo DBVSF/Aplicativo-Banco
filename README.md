@@ -5,6 +5,8 @@ Aplicativo de banco no estilo NuBank - SA2 SENAI
 O projeto em questão, é um "clone" da área de cadastro do app da Nubank, feito em Xamarin. O app replica todos os aspectos da criação de um novo usuário, desde a validação dos dados, até biometria. 
 
 Telas do App:
+
+
 ![T1](https://github.com/DBVSF/Aplicativo-Banco/assets/50590026/39bdb1e4-1579-4a14-99f0-c2926bb735fe)
 ![T2-C](https://github.com/DBVSF/Aplicativo-Banco/assets/50590026/e8f06d8f-b79b-4dba-b610-602620e99017)
 ![T3-C](https://github.com/DBVSF/Aplicativo-Banco/assets/50590026/ddb4202c-7cf4-44a4-961c-5e489f2de780)
